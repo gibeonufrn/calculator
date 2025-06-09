@@ -2,7 +2,7 @@ package examples.github.calculator;
 
 /**
  * Calculator class: Basic Mathematical functions like
- * Add,Subtract,Multiply,Divide.
+ * Add,Subtract,Multiply and Divide.
  *
  */
 public class Calculator {
