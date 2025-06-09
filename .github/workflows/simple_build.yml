@@ -26,7 +26,8 @@ jobs:
       run: mvn -B package --file pom.xml
       
     - name: Upload Artifact GitHub Action
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with: 
         name: build-result
-        path: ./target/calculator-0.0.1-SNAPSHOT.jar
+        path: ./target/calculator-${{ steps.date.outputs.date }}.jar
+        overwrite: true
