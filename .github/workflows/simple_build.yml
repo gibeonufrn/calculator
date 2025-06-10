@@ -14,8 +14,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Current date
-      run: echo ${{steps.date.outputs.date}}
+    - name: Get current date
+      id: date
+      run: |
+        echo "{date}={$(date +'%Y-%m-%d')}" >> $GITHUB_STATE
+      env:
+        ARTIFACT_NAME: nightly-build-${{ env.date }}.jar
+        
     - uses: actions/checkout@v3
     - name: Set up JDK 11
       uses: actions/setup-java@v3
@@ -30,6 +35,6 @@ jobs:
     - name: Upload Artifact GitHub Action
       uses: actions/upload-artifact@v4
       with: 
-        name: build-result-calculator-${{steps.date.outputs.date}}
+        name: $ARTIFACT_NAME
         path: ./target/calculator-0.0.1-SNAPSHOT.jar
         overwrite: true
