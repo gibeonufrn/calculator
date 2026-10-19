@@ -19,9 +19,9 @@ jobs:
       run: |
         echo "buildtime=$(date +'%Y-%m-%dT%H-%M-%S')" >> $GITHUB_ENV
         
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v6
     - name: Set up JDK 11
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v5
       with:
         java-version: '11'
         distribution: 'temurin'
@@ -31,7 +31,7 @@ jobs:
       run: mvn -B package --file pom.xml
       
     - name: Upload Artifact GitHub Action
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       with: 
         name: ${{ env.buildtime }}.jar
         path: ./target/simple-calculator-0.0.1-SNAPSHOT.jar
